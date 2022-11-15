@@ -2,16 +2,16 @@ package vcorp.ecom.models;
 
 import org.springframework.http.HttpStatus;
 
-public class FileResponse {
+import java.io.Serializable;
+
+public class FileResponse implements Serializable {
     String fileName;
     String message;
-    HttpStatus errorCode;
 
-    public FileResponse(String fileName, String message, HttpStatus errorCode) {
+    public FileResponse(String fileName, String message) {
         this.fileName = fileName;
         this.message = message;
-        this.errorCode = errorCode;
-    }
+     }
 
     public String getFileName() {
         return fileName;
@@ -29,20 +29,11 @@ public class FileResponse {
         this.message = message;
     }
 
-    public HttpStatus getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(HttpStatus errorCode) {
-        this.errorCode = errorCode;
-    }
-
     @Override
     public String toString() {
         return "FileRespnse{" +
                 "fileName='" + fileName + '\'' +
                 ", message='" + message + '\'' +
-                ", errorCode=" + errorCode +
-                '}';
+                 '}';
     }
 }

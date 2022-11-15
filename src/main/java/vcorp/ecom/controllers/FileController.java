@@ -30,13 +30,14 @@ public class FileController {
     @PostMapping("/upload")
     ResponseEntity<FileResponse> uploadImage(@RequestParam("image") MultipartFile file) {
         System.out.println("FileController-> uploadImage() image : " + file);
-        String fileName =null;
+        String fileName = null;
         try {
-           fileName =   this.fileService.uploadImage(path, file);
+            fileName = this.fileService.uploadImage(path, file);
         } catch (IOException exception) {
-            return new ResponseEntity<>(new FileResponse(null,"Error white uploading "+exception.getMessage(), HttpStatus.OK).getErrorCode());
+            return new ResponseEntity<>(new FileResponse(null, "Error white uploading " + exception.getMessage()), HttpStatus.OK);
         }
-     return new ResponseEntity<>(new FileResponse(fileName,"Uploaded file successfully", HttpStatus.OK).getErrorCode());
+
+        return new ResponseEntity<>(new FileResponse(path+fileName, "Uploaded file successfully"), HttpStatus.OK);
     }
 
 
